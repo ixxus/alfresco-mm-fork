@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Combo-handled YUI CSS files: -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.8.2r1/build/reset-fonts-grids/reset-fonts-grids.css&2.8.2r1/build/base/base-min.css&2.8.2r1/build/menu/assets/skins/sam/menu.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<!-- this CSS overwrites styles in main.css -->
+<style type="text/css">
+#doc3 {
+	margin: 0;
+	min-width: 950px;
+}
+#hd {
+	border-bottom: 1px solid #56a3d9;
+}
+
+/* uncomment when banner is off.  comment out when banner is on. */
+/* 
+#hd #utilities {
+	padding-right: 25px;
+}
+*/
+
+#hd #download {
+	top: 20px;
+	left: auto;
+	right: 25px;
+}
+#hd #download a {
+	display: block;
+	width: 120px;
+	height: 60px;
+	background: none;
+	padding: 0;
+}
+
+body {
+	font: 13px/1.231 arial,helvetica,clean,sans-serif;
+}
+</style>
+
+<!-- Combo-handled YUI JS files: -->
+<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.8.2r1/build/yahoo-dom-event/yahoo-dom-event.js&2.8.2r1/build/container/container_core-min.js&2.8.2r1/build/menu/menu-min.js"></script>
+<script type="text/javascript" xml:space="preserve">
+YAHOO.util.Event.onContentReady("utility-links", function () {
+
+	/*
+		Instantiate a MenuBar:  The first argument passed to the constructor
+		is the id for the Menu element to be created, the second is an 
+		object literal of configuration properties.
+	*/
+
+	var oMenuBar = new YAHOO.widget.MenuBar("utility-links", { 
+												autosubmenudisplay: true, 
+												hidedelay: 750, 
+												lazyload: true });
+
+	/*
+		 Call the "render" method with no arguments since the 
+		 markup for this MenuBar instance is already exists in 
+		 the page.
+	*/
+
+	oMenuBar.render();
+
+});
+</script>
+</head>
+<body class="yui-skin-sam">
+<div id="doc3">
+  <div id="hd">
+    <div class="yui-gd">
+      <div class="yui-u first">
+        <!--start logo -->
+        <a href="http://www.alfresco.com" target="_parent" id="logo">Alfresco</a>
+        <!--end logo -->
+      </div>
+      <div id="utilities" class="yui-u">
+        <!--start utilities -->
+        <div id="utility-links" class="yuimenubar yuimenubarnav">
+          <div class="bd">
+            <ul class="first-of-type">
+              <li class="yuimenubaritem first-of-type no-dropdown"><a class="yuimenubaritemlabel" href="http://www.alfresco.com/" target="_parent">Alfresco.com</a></li>
+              <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#support">Support</a>
+                <div id="support" class="yuimenu">
+                  <div class="bd">
+                    <ul>
+                      <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://support.alfresco.com/" target="_parent">Customer Portal</a></li>
+                      <li class="yuimenuitem"><a class="yuimenuitemlabel" href="http://forums.alfresco.com/" target="_parent">Community Forums</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="yuimenubaritem last-of-type"><a class="yuimenubaritemlabel" href="http://www.alfresco.com/about/contact/" target="_parent">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <!--end utilities -->
+      </div>
+    </div>
+  </div>
+</div>
+<div style="font: 1.3em verdana; color: white; background-color: #56a3d9; border:#56a3d9 solid 5px; text-align: left;">Alfresco Media Management Module Documentation</div>
+</body>
+</html>

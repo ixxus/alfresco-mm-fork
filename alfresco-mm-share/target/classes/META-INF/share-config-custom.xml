@@ -1,0 +1,320 @@
+<alfresco-config>
+
+    <!-- Document Library config section -->
+    <config evaluator="string-compare" condition="DocumentLibrary">
+
+        <!-- Used by the "Manage Aspects" action For custom aspects, remember to
+            also add the relevant i18n string(s) cm_myaspect=My Aspect -->
+        <aspects>
+            <!-- Aspects that a user can see -->
+            <visible>
+                <aspect name="iptcxmp:iptcxmpAspect" />
+            </visible>
+
+            <!-- Aspects that a user can add. Same as "visible" if left empty -->
+            <addable>
+            </addable>
+
+            <!-- Aspects that a user can remove. Same as "visible" if left empty -->
+            <removeable>
+            </removeable>
+        </aspects>
+
+        <metadata-templates>
+            <!-- Default (fallback) -->
+            <template id="default">
+                <banner index="10" id="lockBanner"
+                    evaluator="evaluator.doclib.metadata.hasLockBanner">{lockBanner}</banner>
+                <banner index="20" id="syncTransientError"
+                    evaluator="evaluator.doclib.metadata.hasSyncTransientErrorBanner">{syncTransientError}</banner>
+                <banner index="30" id="syncFailed"
+                    evaluator="evaluator.doclib.metadata.hasSyncFailedBanner">{syncFailed}</banner>
+                <line index="10" id="date">{date}{size}</line>
+                <line index="20" id="description" view="detailed">{description}</line>
+                <line index="30" id="tags" view="detailed">{tags}</line>
+                <line index="40" id="categories" view="detailed"
+                    evaluator="evaluator.doclib.metadata.hasCategories">{categories}</line>
+                <line index="50" id="social" view="detailed">{social}</line>
+                <line index="60" id="exif_model" view="spreadsheet"
+                    evaluator="evaluator.doclib.indicator.exifMetadata">{exif_model}</line>
+                <line index="61" id="exif_pixelXDimension" view="spreadsheet"
+                    evaluator="evaluator.doclib.indicator.exifMetadata">{exif_pixelXDimension}</line>
+                <line index="62" id="exif_pixelYDimension" view="spreadsheet"
+                    evaluator="evaluator.doclib.indicator.exifMetadata">{exif_pixelYDimension}</line>
+                <line index="70" id="size" view="spreadsheet">{size}</line>
+                <line index="80" id="tags-spreadsheet" view="spreadsheet">{tags}</line>
+            </template>
+        </metadata-templates>
+
+    </config>
+
+    <config evaluator="aspect" condition="iptcxmp:iptcxmpAspect">
+        <forms>
+            <form>
+                <field-visibility>
+                <field id="dc:title" set="iptc-core" />
+                    <show id="dc:title" />
+                    <show id="photoshop:Headline" />
+                    <show id="dc:description" />
+                    <show id="photoshop:CaptionWriter" />
+                    <show id="dc:subject" />
+                    <show id="photoshop:Credit" />
+                    <show id="dc:creator" />
+                    <show id="photoshop:AuthorsPosition" />
+                    <show id="dc:rights" />
+                    <show id="xmpRights:UsageTerms" />
+                    <show id="Iptc4xmpCore:IntellectualGenre" />
+                    <show id="Iptc4xmpCore:Scene" />
+                    <show id="Iptc4xmpCore:SubjectCode" />
+                    <show id="photoshop:DateCreated" />
+                    <show id="photoshop:Source" />
+
+                    <show id="Iptc4xmpCore:CiAdrExtadr" />
+                    <show id="Iptc4xmpCore:CiAdrCity" />
+                    <show id="Iptc4xmpCore:CiAdrRegion" />
+                    <show id="Iptc4xmpCore:CiAdrPcode" />
+                    <show id="Iptc4xmpCore:CiAdrCtry" />
+                    <show id="Iptc4xmpCore:CiEmailWork" />
+                    <show id="Iptc4xmpCore:CiTelWork" />
+                    <show id="Iptc4xmpCore:CiUrlWork" />
+
+                    <show id="photoshop:Instructions" />
+                    <show id="photoshop:TransmissionReference" />
+
+                    <show id="Iptc4xmpCore:Location" />
+                    <show id="photoshop:City" />
+                    <show id="photoshop:State" />
+                    <show id="photoshop:Country" />
+
+                    <show id="photoshop:Urgency" />
+                    <show id="photoshop:Category" />
+                    <show id="photoshop:SupplementalCategories" />
+
+
+                    <show id="Iptc4xmpExt:DigImageGUID" />
+                    <show id="Iptc4xmpExt:PersonInImage" />
+
+                    <show id="Iptc4xmpExt:LocationCreatedSublocation" />
+                    <show id="Iptc4xmpExt:LocationCreatedCity" />
+                    <show id="Iptc4xmpExt:LocationCreatedProvinceState" />
+                    <show id="Iptc4xmpExt:LocationCreatedCountryName" />
+                    <show id="Iptc4xmpExt:LocationCreatedCountryCode" />
+                    <show id="Iptc4xmpExt:LocationCreatedWorldRegion" />
+
+                    <show id="Iptc4xmpExt:LocationShownSublocation" />
+                    <show id="Iptc4xmpExt:LocationShownCity" />
+                    <show id="Iptc4xmpExt:LocationShownProvinceState" />
+                    <show id="Iptc4xmpExt:LocationShownCountryCode" />
+                    <show id="Iptc4xmpExt:LocationShownCountryName" />
+                    <show id="Iptc4xmpExt:LocationShownWorldRegion" />
+
+                    <show id="Iptc4xmpExt:OrganisationInImageName" />
+                    <show id="Iptc4xmpExt:OrganisationInImageCode" />
+
+                    <show id="Iptc4xmpExt:Event" />
+
+                    <show id="Iptc4xmpExt:AOTitle" />
+                    <show id="Iptc4xmpExt:AODateCreated" />
+                    <show id="Iptc4xmpExt:AOCreator" />
+                    <show id="Iptc4xmpExt:AOSource" />
+                    <show id="Iptc4xmpExt:AOSourceInvNo" />
+                    <show id="Iptc4xmpExt:AOCopyrightNotice" />
+
+                    <show id="Iptc4xmpExt:AddlModelInfo" />
+                    <show id="Iptc4xmpExt:ModelAge" />
+                    <show id="plus:MinorModelAgeDisclosure" />
+                    <show id="plus:ModelReleaseStatus" />
+                    <show id="plus:ModelReleaseID" />
+
+                    <show id="plus:ImageSupplierName" />
+                    <show id="plus:ImageSupplierId" />
+                    <show id="plus:ImageSupplierImageID" />
+                    <show id="Iptc4xmpExt:RegOrgId" />
+                    <show id="Iptc4xmpExt:RegItemId" />
+                    <show id="Iptc4xmpExt:MaxAvailWidth" />
+                    <show id="Iptc4xmpExt:MaxAvailHeight" />
+                    <show id="Iptc4xmpExt:DigitalSourcefileType" />
+                    <show id="Iptc4xmpExt:DigitalSourceType" />
+
+                    <show id="plus:ImageCreatorName" />
+                    <show id="plus:ImageCreatorId" />
+                    <show id="plus:CopyrightOwnerName" />
+                    <show id="plus:CopyrightOwnerId" />
+                    <show id="plus:LicensorName" />
+                    <show id="plus:LicensorId" />
+                    <show id="plus:LicensorTelephone1" />
+                    <show id="plus:LicensorTelephone2" />
+                    <show id="plus:LicensorEmail" />
+                    <show id="plus:LicensorURL" />
+                    <show id="plus:LicensorStreetAddress" />
+                    <show id="plus:LicensorExtendedAddress" />
+                    <show id="plus:LicensorCity" />
+                    <show id="plus:LicensorRegion" />
+                    <show id="plus:LicensorPostalCode" />
+                    <show id="plus:LicensorCountry" />
+
+                    <show id="plus:PropertyReleaseStatus" />
+                    <show id="plus:PropertyReleaseID" />
+
+                    <show id="Iptc4xmpExt:CVterm" />
+                    <show id="Iptc4xmpExt:RegistryId" />
+                    <show id="plus:Version" />
+                    <show id="Iptc4xmpExt:IptcLastEdited" />
+
+                </field-visibility>
+                <appearance>
+                    <set id="iptc-core" appearance="title" label-id="set.label.iptc_core" />
+
+                    <set id="iptc-core-contact" parent="iptc-core" appearance="bordered-panel" label-id="set.label.iptc_core.contact_info" />
+                    <field id="dc:creator" set="iptc-core-contact" />
+                    <field id="photoshop:AuthorsPosition" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiAdrExtadr" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiAdrCity" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiAdrRegion" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiAdrPcode" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiAdrCtry" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiEmailWork" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiTelWork" set="iptc-core-contact" />
+                    <field id="Iptc4xmpCore:CiUrlWork" set="iptc-core-contact" />
+
+                    <set id="iptc-core-image-info" parent="iptc-core" appearance="bordered-panel" label-id="set.label.iptc_core.image_info" />
+                    <field id="photoshop:DateCreated" set="iptc-core-image-info" />
+                    <field id="Iptc4xmpCore:IntellectualGenre" set="iptc-core-image-info" />
+                    <field id="Iptc4xmpCore:Scene" set="iptc-core-image-info" />
+                    <set id="iptc-core-location-legacy" parent="iptc-core-image-info" appearance="bordered-panel" label-id="set.label.iptc_core.location_info_legacy" />
+                    <field id="Iptc4xmpCore:Location" set="iptc-core-location-legacy" />
+                    <field id="photoshop:City" set="iptc-core-location-legacy" />
+                    <field id="photoshop:State" set="iptc-core-location-legacy" />
+                    <field id="photoshop:Country" set="iptc-core-location-legacy" />
+
+                    <set id="iptc-core-content" parent="iptc-core" appearance="bordered-panel" label-id="set.label.iptc_core.content_info" />
+                    <field id="photoshop:Headline" set="iptc-core-content" />
+                    <field id="dc:subject" set="iptc-core-content" />
+                    <field id="dc:description" set="iptc-core-content" />
+                    <field id="Iptc4xmpCore:SubjectCode" set="iptc-core-content" />
+                    <field id="photoshop:CaptionWriter" set="iptc-core-content" />
+
+                    <set id="iptc-core-status" parent="iptc-core" appearance="bordered-panel" label-id="set.label.iptc_core.status_info" />
+                    <field id="dc:title" set="iptc-core-status" />
+                    <field id="photoshop:TransmissionReference" set="iptc-core-status" />
+                    <field id="photoshop:Instructions" set="iptc-core-status" />
+                    <field id="photoshop:Credit" set="iptc-core-status" />
+                    <field id="photoshop:Source" set="iptc-core-status" />
+                    <field id="dc:rights" set="iptc-core-status" />
+                    <field id="xmpRights:UsageTerms" set="iptc-core-status" />
+
+                    <set id="iptc-core-deprecated" parent="iptc-core" appearance="bordered-panel" label-id="set.label.iptc_core.deprecated" />
+                    <field id="photoshop:Urgency" set="iptc-core-deprecated" />
+                    <field id="photoshop:Category" set="iptc-core-deprecated" />
+                    <field id="photoshop:SupplementalCategories" set="iptc-core-deprecated" />
+
+
+                    <set id="iptc-ext" appearance="title" label-id="set.label.iptc_ext"/>
+
+                    <set id="iptc-ext-description" appearance="whitespace" parent="iptc-ext" label-id="set.label.iptc_ext.description"/>
+                    <field id="Iptc4xmpExt:DigImageGUID" set="iptc-ext-description" />
+                    <field id="Iptc4xmpExt:PersonInImage" set="iptc-ext-description" />
+
+                    <set id="iptc-ext-location-created" parent="iptc-ext-description" appearance="bordered-panel" label-id="set.label.iptc_ext.location_created" />
+                    <field id="Iptc4xmpExt:LocationCreatedSublocation" set="iptc-ext-location-created" />
+                    <field id="Iptc4xmpExt:LocationCreatedCity" set="iptc-ext-location-created" />
+                    <field id="Iptc4xmpExt:LocationCreatedProvinceState" set="iptc-ext-location-created" />
+                    <field id="Iptc4xmpExt:LocationCreatedCountryName" set="iptc-ext-location-created" />
+                    <field id="Iptc4xmpExt:LocationCreatedCountryCode" set="iptc-ext-location-created" />
+                    <field id="Iptc4xmpExt:LocationCreatedWorldRegion" set="iptc-ext-location-created" />
+
+                    <set id="iptc-ext-location-shown" parent="iptc-ext-description" appearance="bordered-panel" label-id="set.label.iptc_ext.location_shown" />
+                    <field id="Iptc4xmpExt:LocationShownSublocation" set="iptc-ext-location-shown" />
+                    <field id="Iptc4xmpExt:LocationShownCity" set="iptc-ext-location-shown" />
+                    <field id="Iptc4xmpExt:LocationShownProvinceState" set="iptc-ext-location-shown" />
+                    <field id="Iptc4xmpExt:LocationShownCountryCode" set="iptc-ext-location-shown" />
+                    <field id="Iptc4xmpExt:LocationShownCountryName" set="iptc-ext-location-shown" />
+                    <field id="Iptc4xmpExt:LocationShownWorldRegion" set="iptc-ext-location-shown" />
+
+                    <set id="iptc-ext-organisation" parent="iptc-ext-description" appearance="bordered-panel" label-id="set.label.iptc_ext.organisation" />
+                    <field id="Iptc4xmpExt:OrganisationInImageName" set="iptc-ext-organisation" />
+                    <field id="Iptc4xmpExt:OrganisationInImageCode" set="iptc-ext-organisation" />
+
+                    <field id="Iptc4xmpExt:Event" set="iptc-ext-description" />
+
+                    <set id="iptc-ext-ao-detail" parent="iptc-ext" appearance="bordered-panel" label-id="set.label.iptc_ext.ao_detail" />
+                    <field id="Iptc4xmpExt:AOTitle" set="iptc-ext-ao-detail" />
+                    <field id="Iptc4xmpExt:AODateCreated" set="iptc-ext-ao-detail" />
+                    <field id="Iptc4xmpExt:AOCreator" set="iptc-ext-ao-detail" />
+                    <field id="Iptc4xmpExt:AOSource" set="iptc-ext-ao-detail" />
+                    <field id="Iptc4xmpExt:AOSourceInvNo" set="iptc-ext-ao-detail" />
+                    <field id="Iptc4xmpExt:AOCopyrightNotice" set="iptc-ext-ao-detail" />
+
+                    <set id="iptc-ext-model-info" parent="iptc-ext" appearance="bordered-panel" label-id="set.label.iptc_ext.model_info" />
+                    <field id="Iptc4xmpExt:AddlModelInfo" set="iptc-ext-model-info" />
+                    <field id="Iptc4xmpExt:ModelAge" set="iptc-ext-model-info" />
+                    <field id="plus:MinorModelAgeDisclosure" set="iptc-ext-model-info" />
+                    <field id="plus:ModelReleaseStatus" set="iptc-ext-model-info" />
+                    <field id="plus:ModelReleaseID" set="iptc-ext-model-info" />
+
+                    <set id="iptc-ext-admin-info" parent="iptc-ext" appearance="bordered-panel" label-id="set.label.iptc_ext.admin_info" />
+                    <field id="plus:ImageSupplierName" set="iptc-ext-admin-info" />
+                    <field id="plus:ImageSupplierId" set="iptc-ext-admin-info" />
+                    <field id="plus:ImageSupplierImageID" set="iptc-ext-admin-info" />
+                    <field id="Iptc4xmpExt:RegOrgId" set="iptc-ext-admin-info" />
+                    <field id="Iptc4xmpExt:RegItemId" set="iptc-ext-admin-info" />
+                    <field id="Iptc4xmpExt:MaxAvailWidth" set="iptc-ext-admin-info" />
+                    <field id="Iptc4xmpExt:MaxAvailHeight" set="iptc-ext-admin-info" />
+                    <field id="Iptc4xmpExt:DigitalSourcefileType" set="iptc-ext-admin-info" />
+                    <field id="Iptc4xmpExt:DigitalSourceType" set="iptc-ext-admin-info" />
+
+                    <set id="iptc-ext-rights-info" parent="iptc-ext" appearance="bordered-panel" label-id="set.label.iptc_ext.rights_info" />
+                    <field id="plus:ImageCreatorName" set="iptc-ext-rights-info" />
+                    <field id="plus:ImageCreatorId" set="iptc-ext-rights-info" />
+                    <field id="plus:CopyrightOwnerName" set="iptc-ext-rights-info" />
+                    <field id="plus:CopyrightOwnerId" set="iptc-ext-rights-info" />
+                    <set id="iptc-ext-licensor-detail" parent="iptc-ext-rights-info" appearance="bordered-panel" label-id="set.label.iptc_ext.licensor_detail" />
+                    <field id="plus:LicensorName" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorId" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorTelephone1" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorTelephone2" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorEmail" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorURL" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorStreetAddress" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorExtendedAddress" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorCity" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorRegion" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorPostalCode" set="iptc-ext-licensor-detail" />
+                    <field id="plus:LicensorCountry" set="iptc-ext-licensor-detail" />
+                    <field id="plus:PropertyReleaseStatus" set="iptc-ext-rights-info" />
+                    <field id="plus:PropertyReleaseID" set="iptc-ext-rights-info" />
+
+                    <set id="iptc-ext-other" appearance="whitespace" parent="iptc-ext" label-id="set.label.iptc_ext.other"/>
+                    <field id="Iptc4xmpExt:CVterm" set="iptc-ext-other" />
+                    <field id="Iptc4xmpExt:RegistryId" set="iptc-ext-other" />
+                    <field id="plus:Version" set="iptc-ext-other" />
+                    <field id="Iptc4xmpExt:IptcLastEdited" set="iptc-ext-other" />
+
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!-- FFmpeg -->
+    <config evaluator="string-compare" condition="Alfresco:Name=ContentTransformer,Type=Ffmpeg">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="Available" />
+                    <show id="VersionString" />
+                </field-visibility>
+                <appearance>
+                    <set id="ffmpeg" appearance="title" label-id="form.set.general"
+                        template="/org/alfresco/components/form/2-column-set.ftl" />
+                    <field id="Available" label-id="transformer-ffmpeg.field.Available"
+                        read-only="true" set="ffmpeg">
+                        <control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+                    </field>
+                    <field id="VersionString" label-id="transformer-ffmpeg.field.VersionString"
+                        read-only="true" set="ffmpeg" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+</alfresco-config>

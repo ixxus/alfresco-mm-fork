@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd" >
+<map xml:lang="en-US">
+	<title>Alfresco Media Management Module User Help</title>
+	<topicref href="concepts/mm-features.dita" type="concept">
+		<topicref href="concepts/mm-ui-gallery-view.dita" type="concept" />
+		<topicref href="concepts/mm-ui-site-theme.dita" type="concept" />
+	</topicref>
+</map>

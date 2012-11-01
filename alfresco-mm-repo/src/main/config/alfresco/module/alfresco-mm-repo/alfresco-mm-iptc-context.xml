@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+    
+	<bean id="org.alfresco.alfresco-mm-repo.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
+		<property name="models">
+			<list>
+				<value>alfresco/module/alfresco-mm-repo/model/iptcModel.xml</value>
+			</list>
+		</property>
+		<property name="labels">
+			<list>
+				<value>alfresco/module/alfresco-mm-repo/model/iptc-model</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="extracter.TikaExifTool" class="org.alfresco.repo.content.metadata.TikaImageMetadataExtracter" parent="baseMetadataExtracter">
+		<property name="runtimeExiftoolExecutable" value="${exiftool.exe}" />
+		<property name="inheritDefaultMapping" value="true" />
+		<property name="mappingPropertiesUrl" value="org/alfresco/repo/content/metadata/TikaAutoMetadataExtracter.properties"></property>
+	</bean>
+    
+    <!-- Only enable if https://issues.alfresco.com/jira/browse/ALF-14965 is implemented
+    <bean id="extract-metadata" class="org.alfresco.repo.action.executer.ContentMetadataExtracter" parent="action-executer">
+        <property name="nodeService">
+            <ref bean="NodeService" />
+        </property>
+        <property name="contentService">
+            <ref bean="ContentService" />
+        </property>
+        <property name="dictionaryService">
+            <ref bean="dictionaryService" />
+        </property>
+        <property name="taggingService">
+            <ref bean="TaggingService" />
+        </property>
+        <property name="metadataExtracterRegistry">
+            <ref bean="metadataExtracterRegistry" />
+        </property>
+        <property name="applicableTypes">
+            <list>
+                <value>{http://www.alfresco.org/model/content/1.0}content</value>
+            </list>
+        </property>
+        <property name="carryAspectProperties">
+            <value>true</value>
+        </property>
+        <property name="enablePropertyPathParsing">
+            <value>true</value>
+        </property>
+        <property name="enableStringTagging">
+            <value>true</value>
+        </property>
+    </bean>
+    -->
+    
+</beans>

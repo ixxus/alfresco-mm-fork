@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>dist</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <files>
+        <file>
+            <source>../alfresco-mm-repo/target/alfresco-mm-repo-${project.version}.jar</source>
+        </file>
+        <file>
+            <source>../alfresco-mm-share/target/alfresco-mm-share-${project.version}.jar</source>
+        </file>
+    </files>
+    <fileSets>
+        <fileSet>
+            <directory>../alfresco-mm-doc/target</directory>
+            <outputDirectory>doc</outputDirectory>
+        </fileSet>
+    </fileSets>
+    <!-- TODO: This looks like the proper way but doesn't seem to work
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.alfresco.mediamanagement:alfresco-mm-repo</include>
+                <include>org.alfresco.mediamanagement:alfresco-mm-share</include>
+                <include>org.alfresco.mediamanagement:alfresco-mm-doc</include>
+            </includes>
+            <binaries>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+    -->
+</assembly>

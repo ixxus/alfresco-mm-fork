@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Media Management Documentation Instructions</title>
+<link href="src/doc/css/style.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+body {
+	margin: 0px;
+	padding-right: 6px;
+	padding-top: 12px;
+	padding-left: 24px;
+}
+pre {
+	width: 50%;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Generating Documentation</h2>
+<p>The Media Management module doc project uses <a href="http://dita-ot.sourceforge.net/" target="_blank">DITA Open Toolkit</a>
+to generate various outut formats from DITA source.</p>
+
+<p>Generate the XHTML documentation by running the build script from the doc directory:
+<pre>$ ./build.sh</pre>
+You can also specify output to pdf or eclipsehelp, i.e.:
+<pre>$ ./build.sh pdf</pre>
+</p>
+
+<h2>Viewing Documentation</h2>
+Once the XHTML has been generated you should be able to view the
+<a href="target/index.html">Documentation</a>.
+
+</body>
+</html>

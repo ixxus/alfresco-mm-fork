@@ -1,0 +1,53 @@
+<extension>
+    <modules>
+    
+		<module>
+			<id>Alfresco :: Media Management - Document List Gallery View</id>
+			<auto-deploy>true</auto-deploy>
+			
+			<customizations>
+				<customization>
+					<targetPackageRoot>org.alfresco</targetPackageRoot>
+					<sourcePackageRoot>org.alfresco-mm-galleryview</sourcePackageRoot>
+				</customization>
+			</customizations>
+		</module>
+		
+		<module>
+            <id>Alfresco :: Media Management - Document List Focus View</id>
+            <auto-deploy>false</auto-deploy>
+            
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco</targetPackageRoot>
+                    <sourcePackageRoot>org.alfresco-mm-focusview</sourcePackageRoot>
+                </customization>
+            </customizations>
+        </module>
+        
+        <module>
+            <id>Alfresco :: Media Management - Document List Full-Screen</id>
+            <auto-deploy>false</auto-deploy>
+            
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco</targetPackageRoot>
+                    <sourcePackageRoot>org.alfresco-mm-fullscreen</sourcePackageRoot>
+                </customization>
+            </customizations>
+        </module>
+        
+        <module>
+            <id>Alfresco :: Media Management - Document List Spreadsheet</id>
+            <auto-deploy>false</auto-deploy>
+            
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco</targetPackageRoot>
+                    <sourcePackageRoot>org.alfresco-mm-spreadsheet</sourcePackageRoot>
+                </customization>
+            </customizations>
+        </module>
+		
+    </modules>
+</extension>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+
+   <bean id="transformer.worker.Ffmpeg" class="org.alfresco.repo.content.transform.ffmpeg.FfmpegContentTransformerWorker">
+      <property name="mimetypeService">
+         <ref bean="mimetypeService" />
+      </property>
+      <property name="executer">
+         <bean name="transformer.Ffmpeg.Command" class="org.alfresco.util.exec.RuntimeExec">
+            <property name="commandsAndArguments">
+                <map>
+                    <entry key=".*">
+                        <list>
+                            <value>${ffmpeg.exe}</value>
+                            <value>-y</value>
+                            <value>-i</value>
+                            <value>${source}</value>
+                            <value>SPLIT:${options}</value>
+                            <value>-ss</value>
+                            <value>${offset}</value>
+                            <value>${target}</value>
+                        </list>
+                    </entry>
+                </map>
+            </property>
+            <property name="defaultProperties">
+                <props>
+                    <prop key="options"></prop>
+                    <prop key="offset">00:00:00</prop>
+                </props>
+            </property>
+         </bean>
+      </property>
+      <property name="checkCommand">
+         <bean name="transformer.Ffmpeg.CheckCommand" class="org.alfresco.util.exec.RuntimeExec">
+            <property name="commandsAndArguments">
+               <map>
+                  <entry key=".*">
+                     <list>
+                        <value>${ffmpeg.exe}</value>
+                        <value>-version</value>
+                     </list>
+                  </entry>
+               </map>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+</beans>

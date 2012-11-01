@@ -1,0 +1,129 @@
+
+#contentwin {
+	margin: 0px;
+	padding-right: 6px;
+	padding-top: 12px;
+	padding-left: 24px;
+}
+
+body {
+	margin: auto;
+	font-family: Helvetica;
+	font-size: 11pt;
+}
+
+.nav body {
+	margin: 20px;
+}
+
+#parenttitle {
+	font: 108%/1.2em verdana;
+	color: white;
+	background-color: #56A3D9;
+	border: #56A3D9 solid 5px;
+	text-align: left;
+}
+
+#hd {
+	background-color: white;
+}
+#hd #logo {
+	margin: 20px 30px 20px 25px;
+	display: block;
+	width: 215px;
+	height: 61px;
+	line-height: 0;
+	font-size: 0;
+	text-indent: -9999px;
+	background: url('alfresco-logo.png') no-repeat;
+}
+#hd #utilities {
+	float: right;
+	background: none;
+	background-color: #f6f6f7;
+	width: 626px;
+	height: 104px;
+	margin-top: 0px;
+	/*padding-right: 181px;*/
+	border: none;
+	border-left: 1px dashed #bbbbbb;
+	text-align: right;
+}
+#hd #utility-links {
+    border: 1px solid transparent;
+	float: right;
+	margin: 20px 10px 10px 200px;
+	background: none;
+}
+#hd #utility-links .yuimenubaritem {
+	background: none;
+	border-right: 0px;
+	border-left: 1px solid #cccccc;
+}
+#hd #utility-links li.first-of-type {
+	border-left: 0px;
+}
+#hd #utility-links .yuimenubaritemlabel {
+	border-top: 0px;
+	border-bottom: 0px;
+	cursor: pointer;
+	color: #16387c;
+}
+#hd #utility-links .yuimenubaritemlabel-selected {
+	border-color: #cccccc;
+}
+#hd #utility-links li.first-of-type a.yuimenubaritemlabel-selected {
+	border-left: 0px;
+}
+#hd #utility-links li.no-dropdown a {
+	padding-right: 10px;
+}
+#hd #utility-links li.last-of-type a {
+	padding-right: 0px;
+}
+
+.topictitle1 {
+	background-color: inherit;
+	color: #00AE42;
+	font-size: 18pt;
+	font-weight: normal;
+	margin-bottom: 0.6em;
+}
+
+.relatedlinks {
+	margin-top: 2em;
+}
+.ullinks {
+	list-style-type: none;
+	padding-top: 1em;
+}
+.ulchildlink {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.ulchildlink br {
+	display: block;
+}
+
+li {
+	margin-bottom: 0.6em;
+	margin-top: 0.6em;
+	text-align: left;
+}
+
+a {
+	background-color: inherit;
+	color: #2B6EB5;
+	text-decoration: none;
+}
+
+pre {
+	background-color: #EEE;
+	color: inherit;
+	border-color: #747679;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 10pt;
+	padding: 2px;
+	white-space: pre;
+}

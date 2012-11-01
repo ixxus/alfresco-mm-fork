@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="mm-overview-concept" xml:lang="en-US">
+	<title>Media Management Module Overview</title>
+	<conbody>
+		<p>The Media Management module adds several features to the Alfresco repostiory
+and Share for dealing with rich media assets such as images, audio, and video.</p>
+	</conbody>
+</concept>

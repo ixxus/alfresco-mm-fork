@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="mm-gallery-view-concept" xml:lang="en-US">
+	<title>User Interface: Site Theme</title>
+	<shortdesc>A dark site theme for Share that highlights the content over the rest of the user interface.</shortdesc>
+	<conbody>
+		<p>Dark Side is a standard site theme that can be selected in the customize site section of Share.</p>
+		<p><image href="../images/dark-site-theme.png" height="640px"><alt>Dark Site Theme</alt></image></p>
+	</conbody>
+</concept>
