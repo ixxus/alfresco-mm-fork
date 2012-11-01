@@ -1,1 +1,0 @@
-model.viewRendererNames.push("spreadsheet");

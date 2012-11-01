@@ -12,7 +12,7 @@
             <value>${video.defaultOffset}</value>
         </property>
     </bean>
-
+ 
     <!-- Small image thumbnail options -->
     <bean id="thumbnailDefinitionDoclib" class="org.alfresco.repo.thumbnail.ThumbnailDefinition">
         <property name="name" value="doclib" />

@@ -20,8 +20,25 @@
         <war.file>${war.file.repo}</war.file>
         <war.artifactId>${war.artifactId.repo}</war.artifactId>
     </properties>
-
+ 
     <dependencies>
+
+		<dependency>
+			<groupId>com.ixxus.alfresco</groupId>
+			<artifactId>ixxus-alfresco-sdk</artifactId>
+			<version>4.1.1.0.1.5</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ixxus.alfresco</groupId>
+			<artifactId>alfresco-config</artifactId>
+			<version>4.1.1.0.1.5</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>
@@ -34,11 +51,11 @@
             <version>1.3-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tika</groupId>
-            <artifactId>tika-exiftool</artifactId>
-            <version>1.3-20120917</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-exiftool</artifactId>
+			<version>1.3-20120917</version>
+		</dependency>
     </dependencies>
 
     <build>

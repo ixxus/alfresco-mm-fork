@@ -1,8 +1,0 @@
-<config>
-   <title>tool.transformer-ffmpeg.label</title>
-   <form>
-      <itemKind>mbean</itemKind>
-      <itemId>Alfresco:Name=ContentTransformer,Type=Ffmpeg</itemId>
-   </form>
-   <editable>false</editable>
-</config>

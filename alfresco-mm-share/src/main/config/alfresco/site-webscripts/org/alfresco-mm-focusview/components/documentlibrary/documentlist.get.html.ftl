@@ -2,7 +2,7 @@
    <div id="${args.htmlid}-focus" class="alf-focus alf-gallery documents">
         <div id="${args.htmlid}-focus-main-content" class="alf-focus-main-content">
             <div id="${args.htmlid}-focus-carousel"></div>
-            <div id="${args.htmlid}-focus-nav-main-previous" class="alf-focus-nav-button alf-focus-main-nav-button alf-focus-nav-prev">
+            <div id="${args.htmlid}-focus-nav-main-previous" class="alf-focus-nav-button alf-focus-main-nav-button alf-focus-nav-prev"> 
                 <img src="${page.url.context}/res/mediamanagement/components/documentlibrary/images/focus-main-nav-prev.png" />
             </div>
             <div id="${args.htmlid}-focus-nav-main-next" class="alf-focus-nav-button alf-focus-main-nav-button alf-focus-nav-next">

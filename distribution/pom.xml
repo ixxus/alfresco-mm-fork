@@ -15,7 +15,24 @@
     <packaging>pom</packaging>
     <name>Alfresco Media Management Distribution</name>
     <description>AMPs and documentation for the extensions which provide media / digital asset management (DAM) features</description>
+    <dependencies>
 
+		<dependency>
+			<groupId>com.ixxus.alfresco</groupId>
+			<artifactId>ixxus-alfresco-sdk</artifactId>
+			<version>4.1.1.0.1.5</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ixxus.alfresco</groupId>
+			<artifactId>alfresco-config</artifactId>
+			<version>4.1.1.0.1.5</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
     <build>
         <plugins>
             <plugin>

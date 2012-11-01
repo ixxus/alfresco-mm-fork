@@ -21,14 +21,19 @@ package org.alfresco.repo.content.metadata;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.alfresco.model.ContentModel;
 import org.alfresco.repo.content.filestore.FileContentReader;
+import org.alfresco.repo.content.filestore.FileContentWriter;
 import org.alfresco.repo.content.transform.AbstractContentTransformerTest;
 import org.alfresco.service.cmr.repository.ContentReader;
+import org.alfresco.service.cmr.repository.ContentWriter;
 import org.alfresco.service.cmr.repository.datatype.DefaultTypeConverter;
 import org.alfresco.service.namespace.QName;
+import org.alfresco.util.TempFileProvider;
 
 /**
  * @see org.alfresco.repo.content.metadata.TikaImageMetadataExtracter
@@ -59,10 +64,16 @@ public class TikaImageMetadataExtracterTest extends AbstractMetadataExtracterTes
         extracter.setInheritDefaultMapping(true);
         extracter.setMappingPropertiesUrl("org/alfresco/repo/content/metadata/TikaAutoMetadataExtracter.properties");
         extracter.setDictionaryService(dictionaryService);
+        extracter.setMimetypeService(mimetypeMap);
         extracter.register();
     }
 
     protected MetadataExtracter getExtracter()
+    {
+        return extracter;
+    }
+    
+    protected MetadataEmbedder getEmbedder()
     {
         return extracter;
     }
@@ -71,14 +82,76 @@ public class TikaImageMetadataExtracterTest extends AbstractMetadataExtracterTes
     {
         for (String mimetype : TikaImageMetadataExtracter.SUPPORTED_MIMETYPES)
         {
-            boolean supports = extracter.isSupported(mimetype);
-            assertTrue("Mimetype should be supported: " + mimetype, supports);
+            boolean supports = getExtracter().isSupported(mimetype);
+            assertTrue("Mimetype extracting should be supported: " + mimetype, supports);
+        }
+        for (String mimetype : TikaImageMetadataExtracter.SUPPORTED_MIMETYPES)
+        {
+            boolean supports = getEmbedder().isEmbeddingSupported(mimetype);
+            assertTrue("Mimetype embedding should be supported: " + mimetype, supports);
         }
     }
     
     public void testJPEGExtraction() throws Exception
     {
         testExtractIPTC(QUICK_IPTC_TEST_JPEG_FILENAME);
+    }
+    
+    public void testJPEGEmbedding() throws Exception
+    {
+        testEmbedIPTC(QUICK_IPTC_TEST_JPEG_FILENAME);
+    }
+    
+    protected void testEmbedIPTC(String quickname) throws Exception
+    {
+        String ext = quickname.split("\\.")[quickname.split("\\.").length - 1];
+        String mimetype = mimetypeMap.getMimetype(ext);
+        try
+        {
+            File sourceFile = AbstractContentTransformerTest.loadNamedQuickTestFile(quickname);
+            if (sourceFile == null)
+            {
+                throw new FileNotFoundException("No " + quickname + " file found for test");
+            }
+            
+            Map<QName, Serializable> properties = new HashMap<QName, Serializable>();
+            // construct a reader onto the source file
+            ContentReader sourceReader = new FileContentReader(sourceFile);
+            sourceReader.setMimetype(mimetype);
+            
+            // We don't want to overwrite the test file with the embed, copy to a temp file
+            File tempFile = TempFileProvider.createTempFile("testEmbedIPTC_", "." + ext);
+            ContentWriter writer = new FileContentWriter(tempFile);
+            writer.setMimetype(mimetype);
+//            writer.setEncoding("UTF-8");
+            
+            String embedDescription = "Description embedded on " + new Date();
+            properties.put(ContentModel.PROP_DESCRIPTION, embedDescription);
+            
+            getEmbedder().embed(properties, sourceReader, writer);
+            
+            ContentReader embeddedReader = new FileContentReader(tempFile);
+            embeddedReader.setMimetype(mimetype);
+            
+            Map<QName, Serializable> embeddedProperties = new HashMap<QName, Serializable>(50);
+            
+            getExtracter().extract(embeddedReader, embeddedProperties);
+            
+            String finalExtractedValue = DefaultTypeConverter.INSTANCE.convert(
+                    String.class, embeddedProperties.get(ContentModel.PROP_DESCRIPTION));
+            assertEquals(
+                    "Property " + ContentModel.PROP_DESCRIPTION + " not found for mimetype " + mimetype,
+                    embedDescription,
+                    finalExtractedValue);
+            
+            assertTrue("The ContentWriter should be closed", writer.isClosed());
+        }
+        catch (FileNotFoundException e)
+        {
+            // The test file is not there.  We won't fail it.
+           System.err.println("No test file found for mime type " + mimetype + 
+                 ", skipping extraction test - " + e.getMessage());
+        }
     }
 
     protected void testFileSpecificMetadata(String mimetype, Map<QName, Serializable> properties)
@@ -102,7 +175,7 @@ public class TikaImageMetadataExtracterTest extends AbstractMetadataExtracterTes
                 throw new FileNotFoundException("No " + quickname + " file found for test");
             }
             
-            Map<QName, Serializable> properties = new HashMap<QName, Serializable>();
+            Map<QName, Serializable> properties = new HashMap<QName, Serializable>(50);
             // construct a reader onto the source file
             ContentReader sourceReader = new FileContentReader(sourceFile);
             sourceReader.setMimetype(mimetype);

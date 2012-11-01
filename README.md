@@ -1,6 +1,6 @@
 
 Alfresco Media Management Module
-===================
+=================== 
 
 Description
 -----------

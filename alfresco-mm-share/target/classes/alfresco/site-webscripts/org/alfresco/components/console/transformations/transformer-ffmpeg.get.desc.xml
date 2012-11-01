@@ -1,8 +1,0 @@
-<webscript>
-  <shortname>Admin Console Transformer FFmpeg Tool</shortname>
-  <description>Administration Console - Transformer FFmpeg Tool</description>
-  <url>/components/console/transformer-ffmpeg</url>
-  <family>admin-console</family>
-  <family>edition:TEAM</family>
-  <family>edition:ENTERPRISE</family>
-</webscript>

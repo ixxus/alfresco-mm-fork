@@ -278,7 +278,7 @@ public class TransformationOptions implements Cloneable
     {
         return limits.getTimeoutMs();
     }
-
+ 
     /**
      * Sets a timeout (ms) on the InputStream after which an IOExecption is thrown
      * to terminate very slow transformations or to terminate (kill) a subprocess.
@@ -289,11 +289,6 @@ public class TransformationOptions implements Cloneable
     public void setTimeoutMs(long timeoutMs)
     {
         limits.setTimeoutMs(timeoutMs);
-    }
-    
-	public void setTimeoutMs(String timeoutMs)
-    {
-        limits.setTimeoutMs(Long.valueOf(timeoutMs));
     }
 	
     /**

@@ -10,7 +10,7 @@
             <visible>
                 <aspect name="iptcxmp:iptcxmpAspect" />
             </visible>
-
+ 
             <!-- Aspects that a user can add. Same as "visible" if left empty -->
             <addable>
             </addable>

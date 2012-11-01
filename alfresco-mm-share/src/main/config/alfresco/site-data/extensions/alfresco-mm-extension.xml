@@ -12,7 +12,7 @@
 				</customization>
 			</customizations>
 		</module>
-		
+		 
 		<module>
             <id>Alfresco :: Media Management - Document List Focus View</id>
             <auto-deploy>false</auto-deploy>

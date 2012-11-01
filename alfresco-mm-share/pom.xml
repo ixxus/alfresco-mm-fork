@@ -20,7 +20,15 @@
         <war.file>${war.file.share}</war.file>
         <war.artifactId>${war.artifactId.share}</war.artifactId>
     </properties>
-    
+	<dependencies>
+		<dependency>
+			<groupId>com.ixxus.alfresco</groupId>
+			<artifactId>ixxus-share-sdk</artifactId>
+			<version>4.1.1.0.1.5</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+     </dependencies>
     <build>
 		<plugins>
             <plugin>
