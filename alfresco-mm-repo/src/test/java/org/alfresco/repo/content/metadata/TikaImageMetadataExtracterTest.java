@@ -73,10 +73,7 @@ public class TikaImageMetadataExtracterTest extends AbstractMetadataExtracterTes
         return extracter;
     }
     
-    protected MetadataEmbedder getEmbedder()
-    {
-        return extracter;
-    }
+
 
     public void testSupports() throws Exception
     {
@@ -85,11 +82,7 @@ public class TikaImageMetadataExtracterTest extends AbstractMetadataExtracterTes
             boolean supports = getExtracter().isSupported(mimetype);
             assertTrue("Mimetype extracting should be supported: " + mimetype, supports);
         }
-        for (String mimetype : TikaImageMetadataExtracter.SUPPORTED_MIMETYPES)
-        {
-            boolean supports = getEmbedder().isEmbeddingSupported(mimetype);
-            assertTrue("Mimetype embedding should be supported: " + mimetype, supports);
-        }
+
     }
     
     public void testJPEGExtraction() throws Exception
@@ -128,8 +121,7 @@ public class TikaImageMetadataExtracterTest extends AbstractMetadataExtracterTes
             String embedDescription = "Description embedded on " + new Date();
             properties.put(ContentModel.PROP_DESCRIPTION, embedDescription);
             
-            getEmbedder().embed(properties, sourceReader, writer);
-            
+ 
             ContentReader embeddedReader = new FileContentReader(tempFile);
             embeddedReader.setMimetype(mimetype);
             
