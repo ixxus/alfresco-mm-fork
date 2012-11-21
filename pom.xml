@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.alfresco.mediamanagement</groupId>
     <artifactId>alfresco-mm-parent</artifactId>
-    <version>1.0-IXXUS-SNAPSHOT</version>
+    <version>1.0-IXXUS</version>
     <packaging>pom</packaging>
     <name>Alfresco Media Management Parent Project</name>
 
@@ -478,13 +477,11 @@
                                 </goals>
                                 <configuration>
                                     <tasks>
-                                        <taskdef resource="net/sf/antcontrib/antcontrib.properties"
-                                            classpathref="maven.plugin.classpath" />
+                                        <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath" />
                                         <if>
                                             <available file="${basedir}/src/cloud/webapp" type="dir" />
                                             <then>
-                                                <copy
-                                                    todir="${project.build.directory}/${project.artifactId}-${project.version}/web">
+                                                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/web">
                                                     <fileset dir="${basedir}/src/cloud/webapp" includes="**/*" />
                                                 </copy>
                                             </then>
