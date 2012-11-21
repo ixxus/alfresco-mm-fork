@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.alfresco.mediamanagement</groupId>
         <artifactId>alfresco-mm-parent</artifactId>
-        <version>1.0-IXXUS-SNAPSHOT</version>
+        <version>1.0-IXXUS</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

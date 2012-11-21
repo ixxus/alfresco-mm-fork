@@ -5,7 +5,7 @@
 
     <groupId>org.alfresco.mediamanagement</groupId>
     <artifactId>alfresco-mm-parent</artifactId>
-    <version>1.0-IXXUS-SNAPSHOT</version>
+    <version>1.0-IXXUS</version>
     <packaging>pom</packaging>
     <name>Alfresco Media Management Parent Project</name>
 
