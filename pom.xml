@@ -28,16 +28,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
  
-    <issueManagement>
-        <system>JIRA</system>
-        <url>https://issues.alfresco.com/jira/browse/MM</url>
-    </issueManagement>
-
     <scm>
-        <connection>scm:svn:http://svn.alfresco.com/repos/alfresco-open-mirror/modules/mediamanagement</connection>
-        <developerConnection>scm:svn:https://${user.name}@svn.alfresco.com/repos/alfresco-enterprise/modules/mediamanagement</developerConnection>
-        <url>http://svn.alfresco.com/repos/alfresco-open-mirror/modules/mediamanagement</url>
-    </scm>
+       	<connection>scm:git:ssh://git@github.com:ixxus/alfresco-mm-fork.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:ixxus/alfresco-mm-fork.git</developerConnection>
+		<url>https://github.com/ixxus/alfresco-mm-fork</url> 
+	</scm>
 	<distributionManagement>
     	<repository>
       		<id>ixxus-releases</id>
