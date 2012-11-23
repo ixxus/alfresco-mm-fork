@@ -261,31 +261,29 @@
         <pluginManagement>
             <plugins>
 
-                <plugin>
-                    <groupId>net.alchim31.maven</groupId>
-                    <artifactId>yuicompressor-maven-plugin</artifactId>
-                    <version>1.3.0</version>
-                    <executions>
-                        <execution>
-							<id>compress-js</id>
-                            <phase>process-resources</phase>
-                            <goals>
-                                <goal>compress</goal>
-                            </goals>
-                            <configuration>
-                                <excludes>
-                                    <exclude>**/*-min.js"</exclude>
-                                    <exclude>**/WEB-INF/**"</exclude>
-                                    <exclude>**/tiny_mce/**</exclude>
-                                    <exclude>**/yui/**</exclude>
-                                    <exclude>**/site-webscripts/**</exclude>
-									<exclude>**/*.css</exclude>
-                                </excludes>
-                                <webappDirectory>${project.build.directory}/${project.artifactId}-${project.version}/web</webappDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+			<plugin>
+				<!--There seems to be a bug in this plugin, that resources cannot be 
+					overriden ! So be careful what you minify -->
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.2</version>
+				<configuration>
+					<excludes>
+						<exclude>alfresco/**/*.*</exclude>
+						<exclude>**/*-min.js</exclude>
+						<exclude>**/*.css</exclude>
+					</excludes>
+					<resources />
+				</configuration>
+				<executions>
+					<execution>
+						<id>compress-js</id>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
                 <!-- Disables warnings in Eclipse -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
