@@ -39,7 +39,7 @@
         
         <module>
             <id>Alfresco :: Media Management - Document List Spreadsheet</id>
-            <auto-deploy>false</auto-deploy>
+            <auto-deploy>true</auto-deploy>
             
             <customizations>
                 <customization>
