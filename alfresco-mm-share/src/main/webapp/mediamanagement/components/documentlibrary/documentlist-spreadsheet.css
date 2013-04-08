@@ -121,6 +121,7 @@
 }
 .doclist .documents.alf-spreadsheet .status {
     height: 16px;
+    display: inline;
 }
 
 .alf-spreadsheet-config-button
