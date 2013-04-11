@@ -91,7 +91,7 @@
 }
 .doclist .documents.alf-spreadsheet .yui-dt-col-thumbnail .yui-dt-liner {
     text-align: inherit;
-    width: 16px;
+    width: auto;
 }
 .doclist .documents.alf-spreadsheet .thumbnail {
     width: 16px;
@@ -122,6 +122,8 @@
 .doclist .documents.alf-spreadsheet .status {
     height: 16px;
     display: inline;
+    white-space: nowrap;
+    margin-left: 2px;
 }
 
 .alf-spreadsheet-config-button

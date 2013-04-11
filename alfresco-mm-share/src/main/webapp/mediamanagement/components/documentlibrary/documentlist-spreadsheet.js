@@ -323,6 +323,8 @@
       var fileNameHeaderLiner = fileNameColumnDefinition.getThLinerEl();
       fileNameHeaderLiner.innerHTML = '<span class="yui-dt-label">' + newFileNameColumnLabel + '</span>';
       
+      scope.widgets.dataTable.getColumn("status").width = "auto";      
+      
       // Remove the thumbnail column
 //      var thumbnailColumnDefinition = scope.widgets.dataTable.getColumn('thumbnail');
 //      scope.widgets.dataTable.removeColumn(thumbnailColumnDefinition);
