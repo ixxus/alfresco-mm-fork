@@ -83,6 +83,7 @@
             </property>
             <property name="dc:creator">
                <type>d:text</type>
+               <multiple>true</multiple>
             </property>
             <property name="photoshop:AuthorsPosition">
                <type>d:text</type>
@@ -120,7 +121,7 @@
             <property name="Iptc4xmpCore:CiUrlWork">
                <type>d:text</type>
             </property>
-            
+
             <!-- Deprecated elements -->
             <property name="photoshop:Urgency">
                <type>d:text</type>
