@@ -79,6 +79,8 @@ public class TransformationOptions implements Cloneable
     
     /**
      * Deep clone constructor
+     *
+     * @param options The options used to deep copy
      * @return The object to copy
      */
     public TransformationOptions(TransformationOptions options)
