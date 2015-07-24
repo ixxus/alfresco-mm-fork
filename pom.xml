@@ -17,10 +17,10 @@
 
     <properties>
         <alfresco.groupId>org.alfresco</alfresco.groupId>
-        <alfresco.version>4.1.1</alfresco.version>
-        <alfrescoRepoVersionMin>4.0.2</alfrescoRepoVersionMin>
-        <alfrescoRepoVersionMax>4.2.99</alfrescoRepoVersionMax>
-        <spring.version>3.0.5.RELEASE</spring.version>
+        <alfresco.version>5.0.1</alfresco.version>
+        <alfrescoRepoVersionMin>5.0.1</alfrescoRepoVersionMin>
+        <alfrescoRepoVersionMax>5.1</alfrescoRepoVersionMax>
+        <spring.version>3.2.10.RELEASE</spring.version>
         <maven.compile.source>1.6</maven.compile.source>
         <maven.compile.target>1.6</maven.compile.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,12 +80,7 @@
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
-		<dependency>
-			<groupId>com.ixxus.alfresco</groupId>
-			<artifactId>alfresco-config</artifactId>
-			<version>4.1.1.0.1.5</version>
-			<scope>provided</scope>
-		</dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>

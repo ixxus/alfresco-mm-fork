@@ -18,9 +18,11 @@
  */
 package org.alfresco.service.cmr.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.alfresco.api.AlfrescoPublicApi;
 import org.alfresco.service.cmr.repository.datatype.TypeConverter;
 import org.alfresco.service.namespace.QName;
 
@@ -35,6 +37,7 @@ import org.alfresco.service.namespace.QName;
  * @author Roy Wetherall
  * @since 3.0.0
  */
+@AlfrescoPublicApi
 public class TransformationOptions implements Cloneable
 {
     /** Option map names to preserve backward compatibility */
@@ -43,6 +46,7 @@ public class TransformationOptions implements Cloneable
     public static final String OPT_TARGET_NODEREF = "contentWriterNodeRef";
     public static final String OPT_TARGET_CONTENT_PROPERTY = "targetContentProperty";
     public static final String OPT_INCLUDE_EMBEDDED = "includeEmbedded"; 
+    public static final String OPT_USE = "use"; 
     
     /** The source node reference */
     private NodeRef sourceNodeRef;
@@ -59,9 +63,13 @@ public class TransformationOptions implements Cloneable
     /** The include embedded resources yes/no */
     private Boolean includeEmbedded;
     
+    /** The use to which the transform will be put. */
+    private String use;
     /** Time, KBytes and page limits */
     private TransformationOptionLimits limits = new TransformationOptionLimits();
 
+    /** Source options based on its mimetype */
+    private Map<Class<? extends TransformationSourceOptions>, TransformationSourceOptions> sourceOptionsMap;
     /**
      * Default constructor
      */
@@ -124,6 +132,7 @@ public class TransformationOptions implements Cloneable
     public void copyFrom(TransformationOptions otherOptions)
     {
         this.set(otherOptions.toMap());
+        this.setSourceOptionsList(otherOptions.getSourceOptionsList());
     }
     
     /**
@@ -155,6 +164,7 @@ public class TransformationOptions implements Cloneable
         this.targetNodeRef = (NodeRef)optionsMap.get(OPT_TARGET_NODEREF);
         this.targetContentProperty = (QName)optionsMap.get(OPT_TARGET_CONTENT_PROPERTY);
         this.includeEmbedded = (Boolean)optionsMap.get(OPT_INCLUDE_EMBEDDED);
+        this.use = (String)optionsMap.get(OPT_USE);
         limits.set(optionsMap);
     }
     
@@ -264,6 +274,30 @@ public class TransformationOptions implements Cloneable
     public Boolean getIncludeEmbedded() 
     {
         return includeEmbedded;
+    }
+
+    /**
+     * The use to which the transform will be put.
+     * Initially used to select different transformation limits depending on the
+     * use: "Index", "Preview"...
+     *  
+     * @param use to which the transform will be put.
+     */
+    public void setUse(String use) 
+    {
+       this.use = use;
+    }
+
+    /**
+     * The use to which the transform will be put.
+     * Initially used to select different transformation limits depending on the
+     * use: "Index", "Preview"...
+     * 
+     * @return the use - may be null
+     */
+    public String getUse() 
+    {
+        return use;
     }
 
     // --------------- Time ---------------
@@ -421,6 +455,86 @@ public class TransformationOptions implements Cloneable
     }
 
     /**
+     * Gets the map of source options further describing how the source should
+     * be transformed based on its mimetype
+     * 
+     * @return the source mimetype to source options map
+     */
+    protected Map<Class<? extends TransformationSourceOptions>, TransformationSourceOptions> getSourceOptionsMap()
+    {
+        return sourceOptionsMap;
+    }
+    
+    /**
+     * Gets the immutable list of source options further describing how the source should
+     * be transformed based on its mimetype.
+     * Use {@link TransformationOptions#addSourceOptions(TransformationSourceOptions)}
+     * to add source options.
+     * 
+     * @return the source options list
+     */
+    public Collection<TransformationSourceOptions> getSourceOptionsList()
+    {
+        if (sourceOptionsMap == null)
+            return null;
+        return sourceOptionsMap.values();
+    }
+    
+    /**
+     * Sets the list of source options further describing how the source should
+     * be transformed based on its mimetype.
+     * 
+     * @param sourceOptionsList the source options list
+     */
+    public void setSourceOptionsList(Collection<TransformationSourceOptions> sourceOptionsList)
+    {
+        if (sourceOptionsList != null)
+        {
+            for (TransformationSourceOptions sourceOptions : sourceOptionsList)
+            {
+                addSourceOptions(sourceOptions);
+            }
+        }
+    }
+    
+    /**
+     * Adds the given sourceOptions to the sourceOptionsMap.
+     * <p>
+     * Note that if source options of the same class already exists a new
+     * merged source options object is added.
+     * 
+     * @param sourceOptions
+     */
+    public void addSourceOptions(TransformationSourceOptions sourceOptions)
+    {
+        if (sourceOptionsMap == null)
+        {
+            sourceOptionsMap = new HashMap<Class<? extends TransformationSourceOptions>, TransformationSourceOptions>(1);
+        }
+        TransformationSourceOptions newOptions = sourceOptions;
+        TransformationSourceOptions existingOptions = sourceOptionsMap.get(sourceOptions.getClass());
+        if (existingOptions != null)
+        {
+            newOptions = existingOptions.mergedOptions(sourceOptions);
+        }
+        sourceOptionsMap.put(sourceOptions.getClass(), newOptions);
+    }
+    
+    /**
+     * Gets the appropriate source options for the given mimetype if available.
+     * 
+     * @param sourceMimetype
+     * @return the source options for the mimetype
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends TransformationSourceOptions> T getSourceOptions(Class<T> clazz)
+    {
+        if (sourceOptionsMap == null)
+            return null;
+        return (T) sourceOptionsMap.get(clazz);
+    }
+    
+    /**
      * Convert the transformation options into a map.
      * <p>
      * Basic options (optional) are:
@@ -430,9 +544,10 @@ public class TransformationOptions implements Cloneable
      *   <li>{@link #OPT_TARGET_NODEREF}</li>
      *   <li>{@link #OPT_TARGET_CONTENT_PROPERTY}</li>
      *   <li>{@link #OPT_INCLUDE_EMBEDDED}</li>
+     *   <li>{@link #OPT_USE}</li>
      *   <li>{@link TransformationOptionLimits#OPT_TIMEOUT_MS}</li>
      *   <li>{@link TransformationOptionLimits#OPT_READ_LIMIT_TIME_MS}</li>
-     *   <li>{@link TransformationOptionLimits#OPT_MAX_SOURCE_SIZE_K_BYTES = "maxSourceSizeKBytes";
+     *   <li>{@link TransformationOptionLimits#OPT_MAX_SOURCE_SIZE_K_BYTES</li>
      *   <li>{@link TransformationOptionLimits#OPT_READ_LIMIT_K_BYTES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_MAX_PAGES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_PAGE_LIMIT}</li>
@@ -449,6 +564,7 @@ public class TransformationOptions implements Cloneable
         optionsMap.put(OPT_TARGET_NODEREF, targetNodeRef);
         optionsMap.put(OPT_TARGET_CONTENT_PROPERTY, targetContentProperty);
         optionsMap.put(OPT_INCLUDE_EMBEDDED, includeEmbedded);
+        optionsMap.put(OPT_USE, use);
         limits.toMap(optionsMap);
         return optionsMap;
     }
@@ -485,4 +601,56 @@ public class TransformationOptions implements Cloneable
             return Boolean.FALSE;
         }
     };
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.includeEmbedded == null) ? 0 : this.includeEmbedded.hashCode());
+        result = prime * result + ((this.limits == null) ? 0 : this.limits.hashCode());
+        result = prime * result + ((this.sourceContentProperty == null) ? 0 : this.sourceContentProperty.hashCode());
+        result = prime * result + ((this.sourceNodeRef == null) ? 0 : this.sourceNodeRef.hashCode());
+        result = prime * result + ((this.targetContentProperty == null) ? 0 : this.targetContentProperty.hashCode());
+        result = prime * result + ((this.targetNodeRef == null) ? 0 : this.targetNodeRef.hashCode());
+        return result;
+}
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        TransformationOptions other = (TransformationOptions) obj;
+        if (this.includeEmbedded == null)
+        {
+            if (other.includeEmbedded != null) return false;
+        }
+        else if (!this.includeEmbedded.equals(other.includeEmbedded)) return false;
+        if (this.limits == null)
+        {
+            if (other.limits != null) return false;
+        }
+        else if (!this.limits.equals(other.limits)) return false;
+        if (this.sourceContentProperty == null)
+        {
+            if (other.sourceContentProperty != null) return false;
+        }
+        else if (!this.sourceContentProperty.equals(other.sourceContentProperty)) return false;
+        if (this.sourceNodeRef == null)
+        {
+            if (other.sourceNodeRef != null) return false;
+        }
+        else if (!this.sourceNodeRef.equals(other.sourceNodeRef)) return false;
+        if (this.targetContentProperty == null)
+        {
+            if (other.targetContentProperty != null) return false;
+        }
+        else if (!this.targetContentProperty.equals(other.targetContentProperty)) return false;
+        if (this.targetNodeRef == null)
+        {
+            if (other.targetNodeRef != null) return false;
+        }
+        else if (!this.targetNodeRef.equals(other.targetNodeRef)) return false;
+        return true;
+    }
 }

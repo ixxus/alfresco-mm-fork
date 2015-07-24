@@ -18,14 +18,16 @@
  */
 package org.alfresco.repo.content.transform;
 
+import org.alfresco.repo.content.transform.magick.ImageTransformationOptions;
+import org.alfresco.service.cmr.repository.TransformationOptions;
+import org.alfresco.service.cmr.repository.TransformationSourceOptions;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import org.alfresco.repo.content.transform.magick.ImageTransformationOptions;
-import org.alfresco.service.cmr.repository.TransformationOptions;
 
 /**
  * Extension of <code>TransformationOptions</code> which allows for the
@@ -57,7 +59,7 @@ public class SourceTargetTransformationOptions extends ImageTransformationOption
      * 
      * @return the source mimetype to source options map
      */
-    public List<TransformationSourceOptions> getSourceOptionsList()
+    public Collection<TransformationSourceOptions> getSourceOptionsList()
     {
         return sourceOptionsList;
     }

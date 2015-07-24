@@ -18,6 +18,13 @@
  */
 package org.alfresco.repo.content.transform;
 
+import java.io.Serializable;
+import java.util.Map;
+
+import org.alfresco.service.cmr.repository.AbstractTransformationSourceOptions;
+import org.alfresco.service.cmr.repository.SerializedTransformationOptionsAccessor;
+import org.alfresco.service.cmr.repository.TransformationSourceOptions;
+import org.alfresco.service.cmr.repository.TransformationSourceOptions.TransformationSourceOptionsSerializer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -38,6 +45,8 @@ public class VideoSourceOptions extends AbstractTransformationSourceOptions
 
     /** The duration of the target video after the transformation */
     private String duration;
+    
+    private String commandOptions;
 
     /**
      * Default constructor
@@ -66,6 +75,14 @@ public class VideoSourceOptions extends AbstractTransformationSourceOptions
         this.duration = duration;
     }
 
+	public String getCommandOptions() {
+		return commandOptions;
+	}
+
+	public void setCommandOptions(String commandOptions) {
+		this.commandOptions = commandOptions;
+	}
+
     @Override
     public boolean isApplicableForMimetype(String mimetype)
     {
@@ -76,8 +93,7 @@ public class VideoSourceOptions extends AbstractTransformationSourceOptions
     @Override
     public String toString()
     {
-        return "[offset: " + getOffset() + ", duration: " + getDuration() + ", explicitTransformer: "
-                + getExplicitContentTransformer() + ", commandOptions: " + getCommandOptions() + "]";
+        return "[offset: " + getOffset() + ", duration: " + getDuration() + ", explicitTransformer: '', commandOptions: " + getCommandOptions() + "]";
     }
 
     @Override
@@ -106,4 +122,45 @@ public class VideoSourceOptions extends AbstractTransformationSourceOptions
         return null;
     }
 
+	@Override
+	public TransformationSourceOptionsSerializer getSerializer() {
+		return new VideoSourceOptionsSerializer();
+	}
+}
+
+class VideoSourceOptionsSerializer implements TransformationSourceOptionsSerializer {
+
+	public static final String SERIAL_PARAM_OFFSET = "param_offset";
+	public static final String SERIAL_PARAM_COMMAND = "param_command";
+	public static final String SERIAL_PARAM_DURATION = "param_duration";
+	
+	@Override
+	public void serialize(
+			TransformationSourceOptions transformationSourceOptions,
+			Map<String, Serializable> parameters) {
+		if (parameters == null || transformationSourceOptions == null) {
+			return;
+		}
+		VideoSourceOptions options = (VideoSourceOptions)transformationSourceOptions;
+		parameters.put(SERIAL_PARAM_COMMAND, options.getCommandOptions());
+		parameters.put(SERIAL_PARAM_OFFSET, options.getOffset());
+		parameters.put(SERIAL_PARAM_DURATION, options.getDuration());
+	}
+
+	@Override
+	public TransformationSourceOptions deserialize(
+			SerializedTransformationOptionsAccessor serializedOptions) {
+		
+		String command = serializedOptions.getCheckedParam(SERIAL_PARAM_COMMAND, String.class);
+		String offset = serializedOptions.getCheckedParam(SERIAL_PARAM_DURATION, String.class);
+		String duration = serializedOptions.getCheckedParam(SERIAL_PARAM_DURATION, String.class);
+		
+		VideoSourceOptions options = new VideoSourceOptions();
+		options.setCommandOptions(command);
+		options.setDuration(duration);
+		options.setOffset(offset);
+		
+		return options;
+	}
+	
 }

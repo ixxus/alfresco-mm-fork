@@ -22,10 +22,10 @@ import java.io.Serializable;
 import java.util.Map;
 
 import org.alfresco.repo.content.transform.SourceTargetImageTransformationOptions;
-import org.alfresco.repo.content.transform.TransformationSourceOptions;
 import org.alfresco.repo.content.transform.VideoSourceOptions;
 import org.alfresco.repo.rendition.executer.SourceTargetImageRenderingEngine;
 import org.alfresco.service.cmr.repository.TransformationOptions;
+import org.alfresco.service.cmr.repository.TransformationSourceOptions;
 import org.alfresco.service.cmr.thumbnail.ThumbnailParentAssociationDetails;
 
 public class SourceTargetThumbnailRenditionConvertor extends ThumbnailRenditionConvertor
@@ -52,11 +52,6 @@ public class SourceTargetThumbnailRenditionConvertor extends ThumbnailRenditionC
                                 videoSourceOptions.getOffset(), parameters);
                         putParameterIfNotNull(SourceTargetImageRenderingEngine.PARAM_SOURCE_VIDEO_DURATION,
                                 videoSourceOptions.getDuration(), parameters);
-                        putParameterIfNotNull(SourceTargetImageRenderingEngine.PARAM_SOURCE_VIDEO_COMMAND_OPTIONS,
-                                videoSourceOptions.getCommandOptions(), parameters);
-                        putParameterIfNotNull(
-                                SourceTargetImageRenderingEngine.PARAM_SOURCE_VIDEO_EXPLICIT_TRANSFORMER_ID,
-                                videoSourceOptions.getExplicitContentTransformerId(), parameters);
                     }
                 }
             }

@@ -47,7 +47,8 @@ public class SourceTargetImageTransformationOptions extends SourceTargetTransfor
                 // Clone ImageTransformationOptions
                 this.setCommandOptions(((ImageTransformationOptions) origOptions).getCommandOptions());
                 this.setResizeOptions(((ImageTransformationOptions) origOptions).getResizeOptions());
-                this.setCropOptions(((ImageTransformationOptions) origOptions).getCropOptions());
+                // Option seems to be no longer available in ITO
+                // this.setCropOptions(((ImageTransformationOptions) origOptions).getCropOptions());
                 this.setAutoOrient(((ImageTransformationOptions) origOptions).isAutoOrient());
             }
         }

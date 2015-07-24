@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>com.ixxus.alfresco</groupId>
 			<artifactId>ixxus-share-sdk</artifactId>
-			<version>4.1.1.0.1.5</version>
+			<version>5.0.1.0.0</version>
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>

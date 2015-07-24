@@ -26,10 +26,10 @@ import java.util.List;
 
 import org.alfresco.repo.content.transform.ContentTransformer;
 import org.alfresco.repo.content.transform.SourceTargetImageTransformationOptions;
-import org.alfresco.repo.content.transform.TransformationSourceOptions;
 import org.alfresco.repo.content.transform.VideoSourceOptions;
 import org.alfresco.repo.content.transform.magick.ImageTransformationOptions;
 import org.alfresco.service.cmr.repository.TransformationOptions;
+import org.alfresco.service.cmr.repository.TransformationSourceOptions;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -162,16 +162,6 @@ public class SourceTargetImageRenderingEngine extends ImageRenderingEngine
         if (duration != null && !duration.equals(""))
         {
             videoSourceOptions.setDuration(duration);
-        }
-        if (commandOptions != null && !commandOptions.equals(""))
-        {
-            videoSourceOptions.setCommandOptions(commandOptions);
-        }
-        if (explicitTransformerId != null && !explicitTransformerId.equals(""))
-        {
-            ContentTransformer explicitTransformer = (ContentTransformer) this.applicationContext
-                    .getBean(explicitTransformerId);
-            videoSourceOptions.setExplicitContentTransformer(explicitTransformer);
         }
         return videoSourceOptions;
     }

@@ -19,7 +19,7 @@
 	<bean id="extracter.TikaExifTool" class="org.alfresco.repo.content.metadata.TikaImageMetadataExtracter" parent="baseMetadataExtracter">
 		<property name="runtimeExiftoolExecutable" value="${exiftool.exe}" />
 		<property name="inheritDefaultMapping" value="true" />
-		<property name="mappingPropertiesUrl" value="org/alfresco/repo/content/metadata/TikaAutoMetadataExtracter.properties"></property>
+		<property name="mappingPropertiesUrl" value="org/alfresco/repo/content/metadata/TikaImageMetadataExtracter.properties"></property>
 	</bean>
     
     <!-- Only enable if https://issues.alfresco.com/jira/browse/ALF-14965 is implemented

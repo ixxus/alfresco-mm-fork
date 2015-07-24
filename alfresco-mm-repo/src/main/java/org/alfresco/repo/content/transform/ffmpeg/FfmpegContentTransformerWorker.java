@@ -24,12 +24,12 @@ import java.util.Map;
 
 import org.alfresco.error.AlfrescoRuntimeException;
 import org.alfresco.repo.content.transform.SourceTargetImageTransformationOptions;
-import org.alfresco.repo.content.transform.TransformationSourceOptions;
 import org.alfresco.repo.content.transform.VideoSourceOptions;
 import org.alfresco.repo.content.transform.magick.ImageResizeOptions;
 import org.alfresco.repo.content.transform.magick.ImageTransformationOptions;
 import org.alfresco.service.cmr.repository.ContentIOException;
 import org.alfresco.service.cmr.repository.TransformationOptions;
+import org.alfresco.service.cmr.repository.TransformationSourceOptions;
 import org.alfresco.util.exec.RuntimeExec;
 import org.alfresco.util.exec.RuntimeExec.ExecutionResult;
 import org.apache.commons.logging.Log;
@@ -259,11 +259,6 @@ public class FfmpegContentTransformerWorker extends AbstractFfmpegContentTransfo
     private String getSourceCommandOptions(VideoSourceOptions videoConversionOptions)
     {
         StringBuilder builder = new StringBuilder(32);
-
-        if (videoConversionOptions.getCommandOptions() != null)
-        {
-            builder.append(videoConversionOptions.getCommandOptions());
-        }
 
         if (videoConversionOptions.getDuration() != null)
         {
