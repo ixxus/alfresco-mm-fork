@@ -27,7 +27,7 @@ public class BooleanContextLoaderEvaluator extends AbstractClasspathContextLoade
 	/**
 	 * Sets whether or not to load the context
 	 * 
-	 * @param loadContext
+	 * @param loadContext Whether to load the context, "yes"/"no"
 	 */
 	public void setLoadContext(String loadContext)
 	{

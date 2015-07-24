@@ -54,7 +54,7 @@ public class DynamicContextLoader implements ApplicationContextAware
 	/**
 	 * Sets the list of ContextLoaderEvaluators to evaluate
 	 * 
-	 * @param contextLoaderEvaluators
+	 * @param contextLoaderEvaluators A list of evaluators
 	 */
 	public void setContextLoaderEvaluators(List<ContextLoaderEvaluator> contextLoaderEvaluators)
 	{

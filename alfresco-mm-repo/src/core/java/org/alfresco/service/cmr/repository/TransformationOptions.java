@@ -79,6 +79,7 @@ public class TransformationOptions implements Cloneable
     
     /**
      * Deep clone constructor
+     * @return The object to copy
      */
     public TransformationOptions(TransformationOptions options)
     {
@@ -155,7 +156,7 @@ public class TransformationOptions implements Cloneable
     
     /**
      * Sets options from the supplied map.
-     * @param optionsMap
+     * @param optionsMap A map with options
      */
     public void set(Map<String, Object> optionsMap)
     {
@@ -329,7 +330,7 @@ public class TransformationOptions implements Cloneable
      * Gets the limit in terms of the amount of data read (by time) to limit transformations where
      * only the start of the content is needed. After this limit is reached the InputStream reports
      * end of file.
-     * @return readLimitBytes if less than or equal to zero (the default) there is no limit.
+     * @return getReadLimitTimeMs if less than or equal to zero (the default) there is no limit.
      */
     public long getReadLimitTimeMs()
     {
@@ -342,7 +343,7 @@ public class TransformationOptions implements Cloneable
      * Sets a limit in terms of the amount of data read (by time) to limit transformations where
      * only the start of the content is needed. After this limit is reached the InputStream reports
      * end of file.
-     * @param readLimitBytes if less than or equal to zero (the default) there is no limit.
+     * @param readLimitTimeMs if less than or equal to zero (the default) there is no limit.
      *                       If greater than zero the {@code timeoutMs} must not be set.
      */
     public void setReadLimitTimeMs(long readLimitTimeMs)
@@ -439,7 +440,8 @@ public class TransformationOptions implements Cloneable
     }
     
     /**
-     * Returns max and limit values for time, size and pages in a single operation. 
+     * Returns max and limit values for time, size and pages in a single operation.
+     * @return The limits 
      */
     public TransformationOptionLimits getLimits()
     {
@@ -447,7 +449,8 @@ public class TransformationOptions implements Cloneable
     }
 
     /**
-     * Sets max and limit values for time, size and pages in a single operation. 
+     * Sets max and limit values for time, size and pages in a single operation.
+     * @param limits The limits 
      */
     public void setLimits(TransformationOptionLimits limits)
     {
@@ -503,7 +506,7 @@ public class TransformationOptions implements Cloneable
      * Note that if source options of the same class already exists a new
      * merged source options object is added.
      * 
-     * @param sourceOptions
+     * @param sourceOptions The source options
      */
     public void addSourceOptions(TransformationSourceOptions sourceOptions)
     {
@@ -523,8 +526,8 @@ public class TransformationOptions implements Cloneable
     /**
      * Gets the appropriate source options for the given mimetype if available.
      * 
-     * @param sourceMimetype
-     * @return the source options for the mimetype
+     * @param clazz The souce options for a class
+     * @return the source options for the class
      */
     @SuppressWarnings("unchecked")
     public <T extends TransformationSourceOptions> T getSourceOptions(Class<T> clazz)
@@ -547,7 +550,7 @@ public class TransformationOptions implements Cloneable
      *   <li>{@link #OPT_USE}</li>
      *   <li>{@link TransformationOptionLimits#OPT_TIMEOUT_MS}</li>
      *   <li>{@link TransformationOptionLimits#OPT_READ_LIMIT_TIME_MS}</li>
-     *   <li>{@link TransformationOptionLimits#OPT_MAX_SOURCE_SIZE_K_BYTES</li>
+     *   <li>{@link TransformationOptionLimits#OPT_MAX_SOURCE_SIZE_K_BYTES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_READ_LIMIT_K_BYTES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_MAX_PAGES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_PAGE_LIMIT}</li>
@@ -555,6 +558,7 @@ public class TransformationOptions implements Cloneable
      * <p>
      * Override this method to append option values to the map.  Derived classes should call
      * the base class before appending further values and returning the result.
+     * @return A map
      */
     public Map<String, Object> toMap()
     {
