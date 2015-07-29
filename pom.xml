@@ -32,6 +32,7 @@
 		<developerConnection>scm:git:git@github.com:ixxus/alfresco-mm-fork.git</developerConnection>
 		<url>https://github.com/ixxus/alfresco-mm-fork</url> 
 	</scm>
+    
 	<distributionManagement>
     	<repository>
       		<id>ixxus-releases</id>
