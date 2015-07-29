@@ -35,11 +35,11 @@
 	<distributionManagement>
     	<repository>
       		<id>ixxus-releases</id>
-      		<url>http://172.16.10.149:8081/nexus/content/repositories/releases</url>
+      		<url>https://inexus.ixxus.co.uk/nexus/content/repositories/releases</url>
     	</repository>
     	<snapshotRepository>
       		<id>ixxus-snapshots</id>
-      		<url>http://172.16.10.149:8081/nexus/content/repositories/snapshots</url>
+      		<url>https://inexus.ixxus.co.uk/nexus/content/repositories/snapshots</url>
     	</snapshotRepository>
   	</distributionManagement>
 
