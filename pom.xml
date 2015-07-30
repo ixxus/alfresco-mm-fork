@@ -264,6 +264,7 @@
 				<artifactId>yuicompressor-maven-plugin</artifactId>
 				<version>1.2</version>
 				<configuration>
+                    <excludeResources>true</excludeResources>
 					<excludes>
 						<exclude>alfresco/**/*.*</exclude>
 						<exclude>**/*-min.js</exclude>
