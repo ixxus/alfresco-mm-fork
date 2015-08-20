@@ -117,7 +117,7 @@ public class SourceTargetImageRenderingEngine extends ImageRenderingEngine
      * types
      * </p>
      * 
-     * @param context
+     * @param context The context
      * @return the list of <code>TransformationSourceOptions</code>
      */
     protected List<TransformationSourceOptions> getAllTransformationSourceOptions(RenderingContext context)
@@ -136,7 +136,7 @@ public class SourceTargetImageRenderingEngine extends ImageRenderingEngine
      * Gets a @{link VideoSourceOptions} object from the parameters in the
      * <code>RenderingContext</code>
      * 
-     * @param context
+     * @param context The context
      * @return the video source options
      */
     protected TransformationSourceOptions getVideoTransformationSourceOptions(RenderingContext context)

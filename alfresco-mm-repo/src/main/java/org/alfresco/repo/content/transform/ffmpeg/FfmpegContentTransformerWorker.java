@@ -102,7 +102,7 @@ public class FfmpegContentTransformerWorker extends AbstractFfmpegContentTransfo
 
     /**
      * Checks for the ffmpeg dependency, using the common
-     * {@link #transformInternal(File, File) transformation method} to check
+     * transformInternal(File, File) transformation method to check
      * that the sample image can be converted.
      */
     @Override

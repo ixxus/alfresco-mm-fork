@@ -83,7 +83,7 @@ public class SourceTargetTransformationOptions extends ImageTransformationOption
      * changes. The resulting merged <code>TransformationOptions</code> object
      * can then be provided to the transformation service.
      * 
-     * @param overridingSourceOptionsList
+     * @param overridingSourceOptionsList The list of options
      * @return a <code>TransformationOptions</code> object with merged source
      *         options
      */

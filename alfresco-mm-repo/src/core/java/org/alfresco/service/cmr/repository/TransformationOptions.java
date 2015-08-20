@@ -71,6 +71,7 @@ public class TransformationOptions implements Cloneable
     
     /**
      * Deep clone constructor
+     * @param options The options
      */
     public TransformationOptions(TransformationOptions options)
     {
@@ -146,7 +147,7 @@ public class TransformationOptions implements Cloneable
     
     /**
      * Sets options from the supplied map.
-     * @param optionsMap
+     * @param optionsMap The options map
      */
     public void set(Map<String, Object> optionsMap)
     {
@@ -308,7 +309,7 @@ public class TransformationOptions implements Cloneable
      * Sets a limit in terms of the amount of data read (by time) to limit transformations where
      * only the start of the content is needed. After this limit is reached the InputStream reports
      * end of file.
-     * @param readLimitBytes if less than or equal to zero (the default) there is no limit.
+     * @param readLimitTimeMs if less than or equal to zero (the default) there is no limit.
      *                       If greater than zero the {@code timeoutMs} must not be set.
      */
     public void setReadLimitTimeMs(long readLimitTimeMs)
@@ -406,6 +407,7 @@ public class TransformationOptions implements Cloneable
     
     /**
      * Returns max and limit values for time, size and pages in a single operation. 
+     * @return The limits
      */
     public TransformationOptionLimits getLimits()
     {
@@ -414,6 +416,7 @@ public class TransformationOptions implements Cloneable
 
     /**
      * Sets max and limit values for time, size and pages in a single operation. 
+     * @param limits The limits
      */
     public void setLimits(TransformationOptionLimits limits)
     {
@@ -432,7 +435,7 @@ public class TransformationOptions implements Cloneable
      *   <li>{@link #OPT_INCLUDE_EMBEDDED}</li>
      *   <li>{@link TransformationOptionLimits#OPT_TIMEOUT_MS}</li>
      *   <li>{@link TransformationOptionLimits#OPT_READ_LIMIT_TIME_MS}</li>
-     *   <li>{@link TransformationOptionLimits#OPT_MAX_SOURCE_SIZE_K_BYTES = "maxSourceSizeKBytes";
+     *   <li>{@link TransformationOptionLimits#OPT_MAX_SOURCE_SIZE_K_BYTES} = "maxSourceSizeKBytes";</li>
      *   <li>{@link TransformationOptionLimits#OPT_READ_LIMIT_K_BYTES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_MAX_PAGES}</li>
      *   <li>{@link TransformationOptionLimits#OPT_PAGE_LIMIT}</li>
@@ -440,6 +443,7 @@ public class TransformationOptions implements Cloneable
      * <p>
      * Override this method to append option values to the map.  Derived classes should call
      * the base class before appending further values and returning the result.
+     * @return The map
      */
     public Map<String, Object> toMap()
     {

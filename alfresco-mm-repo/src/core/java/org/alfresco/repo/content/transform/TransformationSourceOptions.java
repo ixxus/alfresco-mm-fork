@@ -28,7 +28,7 @@ import org.alfresco.repo.content.transform.ContentTransformer;
  * used instead of letting the <code>ContentService</code> make the
  * determination.
  * <p>
- * See {@link PagedDocuemntSourceOptions} for an example implementation that
+ * See PagedDocumentSourceOptions for an example implementation that
  * describes the page number that should be used from the source content.
  * 
  * @author Ray Gauss II
@@ -58,7 +58,7 @@ public interface TransformationSourceOptions
      * one, merging any non-null overriding fields in the given
      * <code>overridingOptions</code>
      * 
-     * @param overridingOptions
+     * @param overridingOptions The options to override
      * @return a merged <code>TransformationSourceOptions</code> object
      */
     public TransformationSourceOptions mergedOptions(TransformationSourceOptions overridingOptions);

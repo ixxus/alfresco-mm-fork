@@ -43,7 +43,7 @@ public abstract class AbstractClasspathContextLoaderEvaluator implements Context
 	/**
 	 * Sets the string classpath of the context file.
 	 * 
-	 * @param contextClasspath
+	 * @param contextClasspath The classpath
 	 */
 	public void setContextClasspath(String contextClasspath)
 	{

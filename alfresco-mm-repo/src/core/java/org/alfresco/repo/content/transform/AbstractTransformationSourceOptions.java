@@ -119,7 +119,7 @@ public abstract class AbstractTransformationSourceOptions implements Transformat
     /**
      * Sets the list of applicable mimetypes
      * 
-     * @param applicableMimetypes the applicable mimetypes
+     * @param applicabledMimetypes The applicable mimetypes
      */
     public void setApplicableMimetypes(List<String> applicabledMimetypes)
     {

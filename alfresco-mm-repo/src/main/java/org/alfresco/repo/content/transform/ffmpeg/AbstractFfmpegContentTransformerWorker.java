@@ -82,7 +82,7 @@ public abstract class AbstractFfmpegContentTransformerWorker extends ContentTran
     /**
      * Make the transformer available
      * 
-     * @param available
+     * @param available If it's available
      */
     protected void setAvailable(boolean available)
     {
@@ -91,7 +91,7 @@ public abstract class AbstractFfmpegContentTransformerWorker extends ContentTran
 
     /**
      * Checks that ffmpeg is available, using the common
-     * {@link #transformInternal(File, File) transformation method} to check
+     * transformInternal(File, File) transformation method to check
      * that the sample video can be converted.
      * <p>
      * If initialization is successful, then autoregistration takes place.
@@ -182,7 +182,12 @@ public abstract class AbstractFfmpegContentTransformerWorker extends ContentTran
     }
 
     /**
-     * @see #transformInternal(File, File)
+     * See transformInternal(File, File)
+     * 
+     * @param reader The reader
+     * @param writer The writer
+     * @param options The options
+     * @throws Exception If anything goes wrong
      */
     public final void transform(ContentReader reader, ContentWriter writer, TransformationOptions options)
             throws Exception
@@ -229,7 +234,8 @@ public abstract class AbstractFfmpegContentTransformerWorker extends ContentTran
      * @param sourceFile the source of the transformation
      * @param targetFile the target of the transformation
      * @param options the transformation options supported by ImageMagick
-     * @throws Exception
+     * @param sourceMimetype The source mimetype
+     * @throws Exception If anything goes wrong
      */
     protected abstract void transformInternal(File sourceFile, File targetFile, TransformationOptions options,
             String sourceMimetype) throws Exception;
