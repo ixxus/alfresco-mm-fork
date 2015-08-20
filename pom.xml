@@ -5,7 +5,7 @@
 
     <groupId>org.alfresco.mediamanagement</groupId>
     <artifactId>alfresco-mm-parent</artifactId>
-    <version>4.1.1.0.1-IXXUS-SNAPSHOT</version>
+    <version>1.1-IXXUS-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Alfresco Media Management Parent Project</name>
 
@@ -31,8 +31,7 @@
        	<connection>scm:git:git@github.com:ixxus/alfresco-mm-fork.git</connection>
 		<developerConnection>scm:git:git@github.com:ixxus/alfresco-mm-fork.git</developerConnection>
 		<url>https://github.com/ixxus/alfresco-mm-fork</url> 
-	  <tag>HEAD</tag>
-  </scm>
+	</scm>
 	<distributionManagement>
     	<repository>
       		<id>ixxus-releases</id>
