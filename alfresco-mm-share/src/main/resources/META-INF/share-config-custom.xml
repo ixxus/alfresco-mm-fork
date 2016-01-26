@@ -1,7 +1,7 @@
 <alfresco-config>
 
     <!-- Document Library config section -->
-    <config evaluator="string-compare" condition="DocumentLibrary">
+    <config evaluator="string-compare" condition="DocumentLibrary" replace="true">
 
         <!-- Used by the "Manage Aspects" action For custom aspects, remember to
             also add the relevant i18n string(s) cm_myaspect=My Aspect -->
@@ -30,7 +30,7 @@
                 <banner index="30" id="syncFailed"
                     evaluator="evaluator.doclib.metadata.hasSyncFailedBanner">{syncFailed}</banner>
                 <line index="10" id="date">{date}{size}</line>
-                <line index="20" id="description" view="detailed">{description}</line>
+                <line index="20" id="plainDescription" view="detailed">{plainDescription}</line>
                 <line index="30" id="tags" view="detailed">{tags}</line>
                 <line index="40" id="categories" view="detailed"
                     evaluator="evaluator.doclib.metadata.hasCategories">{categories}</line>
@@ -45,9 +45,14 @@
                 <line index="80" id="tags-spreadsheet" view="spreadsheet">{tags}</line>
             </template>
         </metadata-templates>
-
     </config>
 
+    <config evaluator="string-compare" condition="DocLibCustom">
+        <dependencies>
+            <js src="/components/documentlibrary/oup-document-list-renderers.js" />            
+        </dependencies>
+    </config>
+    
     <config evaluator="aspect" condition="iptcxmp:iptcxmpAspect">
         <forms>
             <form>
